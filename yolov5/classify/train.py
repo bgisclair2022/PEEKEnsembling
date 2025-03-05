@@ -57,6 +57,7 @@ from utils.general import (
 )
 from utils.loggers import GenericLogger
 from utils.plots import imshow_cls
+from ..utils.loss import ClassPEEKLoss
 from utils.torch_utils import (
     ModelEMA,
     de_parallel,

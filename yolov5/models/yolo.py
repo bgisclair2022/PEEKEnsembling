@@ -14,6 +14,7 @@ import platform
 import sys
 from copy import deepcopy
 from pathlib import Path
+from peek.functions import compute_PEEK
 
 import torch
 import torch.nn as nn
@@ -148,7 +149,7 @@ class BaseModel(nn.Module):
     # modified forward pass ==========================================================================================
     def _forward_once(self, x, profile=False, visualize=False):
         y, dt = [], []  # outputs
-        feature_maps = []  # Add a list to store feature maps ====================
+        PEEKmaps = []  # Add a list to store feature maps ====================
 
         for m in self.model:
             if m.f != -1:  # if not from previous layer
@@ -159,9 +160,17 @@ class BaseModel(nn.Module):
             x = m(x)  # run
             
             y.append(x if m.i in self.save else None)  # save output
-            
-            if m.i < 24:
-                feature_maps.append(x)
+
+            # Append maps from blocks 12, 16, 19, and 22 (places where lower/ higher res feature maps are concated)
+            match m.i:
+                case 12:
+                    PEEKmaps.append(compute_PEEK(x))
+                case 16:
+                    PEEKmaps.append(compute_PEEK(x))
+                case 19:
+                    PEEKmaps.append(compute_PEEK(x))
+                case 22:
+                    PEEKmaps.append(compute_PEEK(x))
                 
                 # feature_map_layers.append({
                 #     'layer_index': i,
@@ -173,7 +182,7 @@ class BaseModel(nn.Module):
                 feature_visualization(x, m.type, m.i, save_dir=visualize)
         
         #return x
-        return x, feature_maps  # return the output AND feature maps
+        return x, PEEKmaps  # return the output AND feature maps
     # =================================================================================================================
 
     def _profile_one_layer(self, m, x, dt):

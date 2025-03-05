@@ -6,6 +6,7 @@ import os
 import pickle
 from PIL import Image
 import torch
+import torch.nn as nn
 import torchvision.models as models
 import torchvision.transforms as transforms
 
@@ -152,3 +153,59 @@ class VGG16FeatureExtractor(torch.nn.Module):
             with open(filename, "wb") as f:
                 pickle.dump([feature for feature in features], f)
             print(f"Saved all features to {filename}")
+
+class PEEKLossWrapper(nn.Module):
+    def __init__(self, base_loss_fn, custom_weight=1.0, pos=2, beta=1.0, lam=1.0):
+        """
+        Args:
+            base_loss_fn (callable): The base loss function (e.g., nn.CrossEntropyLoss()).
+            custom_weight (float): Weight for the custom PEEK loss term.
+            pos (int): Interval for grouping PEEK outputs.
+            beta (float): Weight for the difference term in PEEK loss.
+            lam (float): Weight for the conservation term in PEEK loss.
+        """
+        super().__init__()
+        self.base_loss_fn = base_loss_fn
+        self.custom_weight = custom_weight
+        self.pos = pos
+        self.beta = beta
+        self.lam = lam
+
+    def forward(self, input, target, PEEKs):
+        """
+        Args:
+            input (Tensor): Model predictions for the base loss.
+            target (Tensor): Ground truth targets for the base loss.
+            PEEKs (PEEK maps from models): Extra model outputs used for computing the custom PEEK loss.
+        """
+        # Compute the base loss using the provided loss function
+        base_loss = self.base_loss_fn(input, target)
+
+        # Compute PEEK loss
+        Sigmoid = nn.Sigmoid()
+        PEEK_criterion = nn.L1Loss()
+        custom_loss = 0.0
+
+        # Process PEEKs in groups defined by self.pos
+        for i in range(0, len(PEEKs), self.pos):
+            PEEK_dif = 0.0
+            PEEK_conservation = 0.0
+            # For each group, compare the current PEEK with the next ones
+            for j in range(1, self.pos):
+                if i + j >= len(PEEKs):
+                    break
+                current_PEEK = Sigmoid(PEEKs[i])
+                next_PEEK = Sigmoid(PEEKs[i + j])
+                PEEK_dif += PEEK_criterion(current_PEEK, next_PEEK)
+                PEEK_conservation += torch.sum(current_PEEK) - torch.sum(next_PEEK)
+            # Normalize difference term if possible
+            if self.pos - 1 > 0:
+                PEEK_dif = PEEK_dif / (self.pos - 1)
+            # Combine terms: here a negative sign on the difference term encourages differences,
+            # while the conservation term is added directly.
+            custom_loss += -self.beta * PEEK_dif + self.lam * PEEK_conservation
+
+        # Combine the base loss with the weighted custom loss term
+        total_loss = base_loss + self.custom_weight * custom_loss
+
+        return total_loss

@@ -1,0 +1,159 @@
+COMET WARNING: Comet credentials have not been set. Comet will default to offline logging. Please set your credentials to enable online logging.
+[1mCOMET INFO:[22m Using '/home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs' path as offline directory. Pass 'offline_directory' parameter into constructor or set the 'COMET_OFFLINE_DIRECTORY' environment variable to manually choose where to store offline experiment archives.
+Traceback (most recent call last):
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 836, in <module>
+    main(opt)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 616, in main
+    train(opt.hyp, opt, device, callbacks)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 182, in train
+    ckpt = torch.load(weights, map_location="cpu")  # load checkpoint to CPU to avoid CUDA memory leak
+  File "/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/torch/serialization.py", line 998, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/torch/serialization.py", line 445, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/torch/serialization.py", line 426, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/rwhite/NFS/Blake/PEEKxYOLO/satellite_detection_weights.pt'
+Traceback (most recent call last):
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 836, in <module>
+    main(opt)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 616, in main
+    train(opt.hyp, opt, device, callbacks)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 182, in train
+    ckpt = torch.load(weights, map_location="cpu")  # load checkpoint to CPU to avoid CUDA memory leak
+  File "/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/torch/serialization.py", line 998, in load
+    with _open_file_like(f, 'rb') as opened_file:
+  File "/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/torch/serialization.py", line 445, in _open_file_like
+    return _open_file(name_or_buffer, mode)
+  File "/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/torch/serialization.py", line 426, in __init__
+    super().__init__(open(name, mode))
+FileNotFoundError: [Errno 2] No such file or directory: '/home/rwhite/NFS/Blake/PEEKxYOLO/satellite_detection_weights.pt'
+[1mCOMET INFO:[22m ---------------------------------------------------------------------------------------
+[1mCOMET INFO:[22m Comet.ml OfflineExperiment Summary
+[1mCOMET INFO:[22m ---------------------------------------------------------------------------------------
+[1mCOMET INFO:[22m   Data:
+[1mCOMET INFO:[22m     display_summary_level : 1
+[1mCOMET INFO:[22m     url                   : [OfflineExperiment will get URL after upload]
+[1mCOMET INFO:[22m   Others:
+[1mCOMET INFO:[22m     Created from                : YOLOv5
+[1mCOMET INFO:[22m     Name                        : exp
+[1mCOMET INFO:[22m     comet_log_batch_metrics     : False
+[1mCOMET INFO:[22m     comet_log_confusion_matrix  : True
+[1mCOMET INFO:[22m     comet_log_per_class_metrics : False
+[1mCOMET INFO:[22m     comet_max_image_uploads     : 100
+[1mCOMET INFO:[22m     comet_mode                  : online
+[1mCOMET INFO:[22m     comet_model_name            : yolov5
+[1mCOMET INFO:[22m     hasNestedParams             : True
+[1mCOMET INFO:[22m     offline_experiment          : True
+[1mCOMET INFO:[22m   Parameters:
+[1mCOMET INFO:[22m     anchor_t            : 4.0
+[1mCOMET INFO:[22m     artifact_alias      : latest
+[1mCOMET INFO:[22m     batch_size          : 16
+[1mCOMET INFO:[22m     bbox_interval       : 5
+[1mCOMET INFO:[22m     box                 : 0.05
+[1mCOMET INFO:[22m     bucket              :
+[1mCOMET INFO:[22m     cache               : None
+[1mCOMET INFO:[22m     cfg                 :
+[1mCOMET INFO:[22m     cls                 : 0.5
+[1mCOMET INFO:[22m     cls_pw              : 1.0
+[1mCOMET INFO:[22m     copy_paste          : 0.0
+[1mCOMET INFO:[22m     cos_lr              : False
+[1mCOMET INFO:[22m     degrees             : 0.0
+[1mCOMET INFO:[22m     device              :
+[1mCOMET INFO:[22m     entity              : None
+[1mCOMET INFO:[22m     evolve              : None
+[1mCOMET INFO:[22m     evolve_population   : yolov5/data/hyps
+[1mCOMET INFO:[22m     exist_ok            : False
+[1mCOMET INFO:[22m     fl_gamma            : 0.0
+[1mCOMET INFO:[22m     fliplr              : 0.5
+[1mCOMET INFO:[22m     flipud              : 0.0
+[1mCOMET INFO:[22m     freeze              : [0]
+[1mCOMET INFO:[22m     hsv_h               : 0.015
+[1mCOMET INFO:[22m     hsv_s               : 0.7
+[1mCOMET INFO:[22m     hsv_v               : 0.4
+[1mCOMET INFO:[22m     hyp|anchor_t        : 4.0
+[1mCOMET INFO:[22m     hyp|box             : 0.05
+[1mCOMET INFO:[22m     hyp|cls             : 0.5
+[1mCOMET INFO:[22m     hyp|cls_pw          : 1.0
+[1mCOMET INFO:[22m     hyp|copy_paste      : 0.0
+[1mCOMET INFO:[22m     hyp|degrees         : 0.0
+[1mCOMET INFO:[22m     hyp|fl_gamma        : 0.0
+[1mCOMET INFO:[22m     hyp|fliplr          : 0.5
+[1mCOMET INFO:[22m     hyp|flipud          : 0.0
+[1mCOMET INFO:[22m     hyp|hsv_h           : 0.015
+[1mCOMET INFO:[22m     hyp|hsv_s           : 0.7
+[1mCOMET INFO:[22m     hyp|hsv_v           : 0.4
+[1mCOMET INFO:[22m     hyp|iou_t           : 0.2
+[1mCOMET INFO:[22m     hyp|lr0             : 0.01
+[1mCOMET INFO:[22m     hyp|lrf             : 0.01
+[1mCOMET INFO:[22m     hyp|mixup           : 0.0
+[1mCOMET INFO:[22m     hyp|momentum        : 0.937
+[1mCOMET INFO:[22m     hyp|mosaic          : 1.0
+[1mCOMET INFO:[22m     hyp|obj             : 1.0
+[1mCOMET INFO:[22m     hyp|obj_pw          : 1.0
+[1mCOMET INFO:[22m     hyp|perspective     : 0.0
+[1mCOMET INFO:[22m     hyp|scale           : 0.5
+[1mCOMET INFO:[22m     hyp|shear           : 0.0
+[1mCOMET INFO:[22m     hyp|translate       : 0.1
+[1mCOMET INFO:[22m     hyp|warmup_bias_lr  : 0.1
+[1mCOMET INFO:[22m     hyp|warmup_epochs   : 3.0
+[1mCOMET INFO:[22m     hyp|warmup_momentum : 0.8
+[1mCOMET INFO:[22m     hyp|weight_decay    : 0.0005
+[1mCOMET INFO:[22m     image_weights       : False
+[1mCOMET INFO:[22m     imgsz               : 640
+[1mCOMET INFO:[22m     iou_t               : 0.2
+[1mCOMET INFO:[22m     label_smoothing     : 0.0
+[1mCOMET INFO:[22m     local_rank          : -1
+[1mCOMET INFO:[22m     lr0                 : 0.01
+[1mCOMET INFO:[22m     lrf                 : 0.01
+[1mCOMET INFO:[22m     mixup               : 0.0
+[1mCOMET INFO:[22m     momentum            : 0.937
+[1mCOMET INFO:[22m     mosaic              : 1.0
+[1mCOMET INFO:[22m     multi_scale         : False
+[1mCOMET INFO:[22m     name                : exp
+[1mCOMET INFO:[22m     ndjson_console      : False
+[1mCOMET INFO:[22m     ndjson_file         : False
+[1mCOMET INFO:[22m     noautoanchor        : False
+[1mCOMET INFO:[22m     noplots             : False
+[1mCOMET INFO:[22m     nosave              : False
+[1mCOMET INFO:[22m     noval               : False
+[1mCOMET INFO:[22m     obj                 : 1.0
+[1mCOMET INFO:[22m     obj_pw              : 1.0
+[1mCOMET INFO:[22m     optimizer           : SGD
+[1mCOMET INFO:[22m     patience            : 100
+[1mCOMET INFO:[22m     perspective         : 0.0
+[1mCOMET INFO:[22m     project             : yolov5/runs/train
+[1mCOMET INFO:[22m     quad                : False
+[1mCOMET INFO:[22m     rect                : False
+[1mCOMET INFO:[22m     resume              : False
+[1mCOMET INFO:[22m     resume_evolve       : None
+[1mCOMET INFO:[22m     save_dir            : yolov5/runs/train/exp12
+[1mCOMET INFO:[22m     save_period         : -1
+[1mCOMET INFO:[22m     scale               : 0.5
+[1mCOMET INFO:[22m     seed                : 0
+[1mCOMET INFO:[22m     shear               : 0.0
+[1mCOMET INFO:[22m     single_cls          : False
+[1mCOMET INFO:[22m     sync_bn             : False
+[1mCOMET INFO:[22m     translate           : 0.1
+[1mCOMET INFO:[22m     upload_dataset      : False
+[1mCOMET INFO:[22m     val_conf_threshold  : 0.001
+[1mCOMET INFO:[22m     val_iou_threshold   : 0.6
+[1mCOMET INFO:[22m     warmup_bias_lr      : 0.1
+[1mCOMET INFO:[22m     warmup_epochs       : 3.0
+[1mCOMET INFO:[22m     warmup_momentum     : 0.8
+[1mCOMET INFO:[22m     weight_decay        : 0.0005
+[1mCOMET INFO:[22m     workers             : 8
+[1mCOMET INFO:[22m   Uploads:
+[1mCOMET INFO:[22m     asset                        : 3 (1.54 KB)
+[1mCOMET INFO:[22m     conda-environment-definition : 1
+[1mCOMET INFO:[22m     conda-info                   : 1
+[1mCOMET INFO:[22m     conda-specification          : 1
+[1mCOMET INFO:[22m     environment details          : 1
+[1mCOMET INFO:[22m     git metadata                 : 1
+[1mCOMET INFO:[22m     installed packages           : 1
+[1mCOMET INFO:[22m     os packages                  : 1
+[1mCOMET INFO:
+[1mCOMET INFO:[22m Still saving offline stats to messages file before program termination (may take up to 120 seconds)
+[1mCOMET INFO:[22m Starting saving the offline archive
+[1mCOMET INFO:[22m To upload this offline experiment, run:
+    comet upload /home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs/f459d3bb91fe4b828bf31fd5bc647ba0.zip

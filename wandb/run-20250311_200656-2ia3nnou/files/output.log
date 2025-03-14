@@ -1,0 +1,485 @@
+COMET WARNING: Comet credentials have not been set. Comet will default to offline logging. Please set your credentials to enable online logging.
+[1mCOMET INFO:[22m Using '/home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs' path as offline directory. Pass 'offline_directory' parameter into constructor or set the 'COMET_OFFLINE_DIRECTORY' environment variable to manually choose where to store offline experiment archives.
+[1mCOMET ERROR:[22m Failed to set run cmd args
+Overriding model.yaml nc=80 with nc=4
+                 from  n    params  module                                  arguments
+  0                -1  1      3520  models.common.Conv                      [3, 32, 6, 2, 2]
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]
+  2                -1  1     18816  models.common.C3                        [64, 64, 1]
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  4                -1  2    115712  models.common.C3                        [128, 128, 2]
+  5                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]
+  6                -1  3    625152  models.common.C3                        [256, 256, 3]
+  7                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]
+  8                -1  1   1182720  models.common.C3                        [512, 512, 1]
+  9                -1  1    656896  models.common.SPPF                      [512, 512, 5]
+ 10                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]
+ 13                -1  1    361984  models.common.C3                        [512, 256, 1, False]
+ 14                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]
+ 17                -1  1     90880  models.common.C3                        [256, 128, 1, False]
+ 18                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]
+ 20                -1  1    296448  models.common.C3                        [256, 256, 1, False]
+ 21                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]
+ 23                -1  1   1182720  models.common.C3                        [512, 512, 1, False]
+ 24      [17, 20, 23]  1     24273  models.yolo.Detect                      [4, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [128, 256, 512]]
+YOLOv5s summary: 214 layers, 7030417 parameters, 7030417 gradients, 16.0 GFLOPs
+[34m[1mAMP: [39m[22mchecks passed ✅
+[34m[1moptimizer:[39m[22m SGD(lr=0.01) with parameter groups 57 weight(decay=0.0), 60 weight(decay=0.0005), 60 bias
+WARNING ⚠️ DP not recommended, use torch.distributed.run for best DDP Multi-GPU results.
+See Multi-GPU Tutorial at https://docs.ultralytics.com/yolov5/tutorials/multi_gpu_training to get started.
+[34m[1mtrain: [39m[22mScanning /home/rwhite/NFS/Blake/PEEKxYOLO/satellite_components-71/train/labels.cache... 1005 images, 7 backgrounds, 0 corrupt: 100%|██████████| 1005/1005 [00:00<?, ?it/s]
+[34m[1mval: [39m[22mScanning /home/rwhite/NFS/Blake/PEEKxYOLO/satellite_components-71/valid/labels.cache... 186 images, 0 backgrounds, 0 corrupt: 100%|██████████| 186/186 [00:00<?, ?it/s]
+[34m[1mAutoAnchor: [39m[22m4.38 anchors/target, 0.985 Best Possible Recall (BPR). Current anchors are a good fit to dataset ✅
+Plotting labels to yolov5/runs/train/exp21/labels.jpg...
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+Image sizes 640 train, 640 val
+Using 8 dataloader workers
+Logging results to [1myolov5/runs/train/exp21
+Starting training for 50 epochs...
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       0/49      1.93G      0.111    0.06509     0.0451        172        640:   2%|▏         | 1/63 [00:02<02:18,  2.24s/it]
+       0/49      1.99G     0.1119    0.06245    0.04563        229        640:  16%|█▌        | 10/63 [00:04<00:12,  4.13it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]
+       0/49      1.99G     0.1109    0.06264     0.0454        147        640:  30%|███       | 19/63 [00:06<00:09,  4.89it/s]

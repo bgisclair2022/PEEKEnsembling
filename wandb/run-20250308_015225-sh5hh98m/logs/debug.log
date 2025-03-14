@@ -1,0 +1,34 @@
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Current SDK version is 0.16.1
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Configure stats pid to 152147
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Loading settings from /home/rwhite/.config/wandb/settings
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Loading settings from /home/rwhite/NFS/Blake/PEEKxYOLO/wandb/settings
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'yolov5/train.py', 'program_abspath': '/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py', 'program': '/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py'}
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_setup.py:_flush():76] Applying login settings: {'login_timeout': 30}
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_init.py:_log_setup():524] Logging user logs to /home/rwhite/NFS/Blake/PEEKxYOLO/wandb/run-20250308_015225-sh5hh98m/logs/debug.log
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_init.py:_log_setup():525] Logging internal logs to /home/rwhite/NFS/Blake/PEEKxYOLO/wandb/run-20250308_015225-sh5hh98m/logs/debug-internal.log
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_init.py:init():564] calling init triggers
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_init.py:init():571] wandb.init called with sweep_config: {}
+config: {'weights': '', 'cfg': 'yolov5/models/yolov5s.yaml', 'data': 'satellite_components-71/data.yaml', 'hyp': {'lr0': 0.01, 'lrf': 0.01, 'momentum': 0.937, 'weight_decay': 0.0005, 'warmup_epochs': 3.0, 'warmup_momentum': 0.8, 'warmup_bias_lr': 0.1, 'box': 0.05, 'cls': 0.5, 'cls_pw': 1.0, 'obj': 1.0, 'obj_pw': 1.0, 'iou_t': 0.2, 'anchor_t': 4.0, 'fl_gamma': 0.0, 'hsv_h': 0.015, 'hsv_s': 0.7, 'hsv_v': 0.4, 'degrees': 0.0, 'translate': 0.1, 'scale': 0.5, 'shear': 0.0, 'perspective': 0.0, 'flipud': 0.0, 'fliplr': 0.5, 'mosaic': 1.0, 'mixup': 0.0, 'copy_paste': 0.0}, 'epochs': 50, 'batch_size': 16, 'imgsz': 640, 'rect': False, 'resume': False, 'nosave': False, 'noval': False, 'noautoanchor': False, 'noplots': False, 'evolve': None, 'evolve_population': PosixPath('yolov5/data/hyps'), 'resume_evolve': None, 'bucket': '', 'cache': None, 'image_weights': False, 'device': '', 'multi_scale': False, 'single_cls': False, 'optimizer': 'SGD', 'sync_bn': False, 'workers': 8, 'project': 'yolov5/runs/train', 'name': 'exp', 'exist_ok': False, 'quad': False, 'cos_lr': False, 'label_smoothing': 0.0, 'patience': 100, 'freeze': [0], 'save_period': -1, 'seed': 0, 'local_rank': -1, 'entity': None, 'upload_dataset': False, 'bbox_interval': -1, 'artifact_alias': 'latest', 'ndjson_console': False, 'ndjson_file': False, 'save_dir': 'yolov5/runs/train/exp20'}
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_init.py:init():614] starting backend
+2025-03-08 01:52:25,676 INFO    MainThread:152147 [wandb_init.py:init():618] setting up manager
+2025-03-08 01:52:25,677 INFO    MainThread:152147 [backend.py:_multiprocessing_setup():105] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2025-03-08 01:52:25,677 INFO    MainThread:152147 [wandb_init.py:init():624] backend started and connected
+2025-03-08 01:52:25,679 INFO    MainThread:152147 [wandb_init.py:init():716] updated telemetry
+2025-03-08 01:52:25,692 INFO    MainThread:152147 [wandb_init.py:init():749] communicating run to backend with 90.0 second timeout
+2025-03-08 01:52:26,101 INFO    MainThread:152147 [wandb_run.py:_on_init():2254] communicating current version
+2025-03-08 01:52:26,176 INFO    MainThread:152147 [wandb_run.py:_on_init():2263] got version response upgrade_message: "wandb version 0.19.8 is available!  To upgrade, please run:\n $ pip install wandb --upgrade"
+
+2025-03-08 01:52:26,177 INFO    MainThread:152147 [wandb_init.py:init():800] starting run threads in backend
+2025-03-08 01:52:34,409 INFO    MainThread:152147 [wandb_run.py:_console_start():2233] atexit reg
+2025-03-08 01:52:34,409 INFO    MainThread:152147 [wandb_run.py:_redirect():2088] redirect: wrap_raw
+2025-03-08 01:52:34,409 INFO    MainThread:152147 [wandb_run.py:_redirect():2153] Wrapping output streams.
+2025-03-08 01:52:34,409 INFO    MainThread:152147 [wandb_run.py:_redirect():2178] Redirects installed.
+2025-03-08 01:52:34,410 INFO    MainThread:152147 [wandb_init.py:init():841] run started, returning control to user process
+2025-03-08 02:04:28,316 INFO    MainThread:152147 [wandb_run.py:_finish():1962] finishing run rtw/train/sh5hh98m
+2025-03-08 02:04:28,316 INFO    MainThread:152147 [wandb_run.py:_atexit_cleanup():2202] got exitcode: 0
+2025-03-08 02:04:28,317 INFO    MainThread:152147 [wandb_run.py:_restore():2185] restore
+2025-03-08 02:04:28,317 INFO    MainThread:152147 [wandb_run.py:_restore():2191] restore done
+2025-03-08 02:04:35,321 INFO    MainThread:152147 [wandb_run.py:_footer_history_summary_info():3837] rendering history
+2025-03-08 02:04:35,322 INFO    MainThread:152147 [wandb_run.py:_footer_history_summary_info():3869] rendering summary
+2025-03-08 02:04:35,330 INFO    MainThread:152147 [wandb_run.py:_footer_sync_info():3796] logging synced files

@@ -1,0 +1,186 @@
+COMET WARNING: Comet credentials have not been set. Comet will default to offline logging. Please set your credentials to enable online logging.
+[1mCOMET INFO:[22m Using '/home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs' path as offline directory. Pass 'offline_directory' parameter into constructor or set the 'COMET_OFFLINE_DIRECTORY' environment variable to manually choose where to store offline experiment archives.
+[1mCOMET ERROR:[22m Failed to set run cmd args
+Overriding model.yaml nc=80 with nc=4
+                 from  n    params  module                                  arguments
+  0                -1  1      3520  models.common.Conv                      [3, 32, 6, 2, 2]
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]
+  2                -1  1     18816  models.common.C3                        [64, 64, 1]
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  4                -1  2    115712  models.common.C3                        [128, 128, 2]
+  5                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]
+  6                -1  3    625152  models.common.C3                        [256, 256, 3]
+  7                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]
+  8                -1  1   1182720  models.common.C3                        [512, 512, 1]
+  9                -1  1    656896  models.common.SPPF                      [512, 512, 5]
+ 10                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]
+ 13                -1  1    361984  models.common.C3                        [512, 256, 1, False]
+ 14                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]
+ 17                -1  1     90880  models.common.C3                        [256, 128, 1, False]
+ 18                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]
+ 20                -1  1    296448  models.common.C3                        [256, 256, 1, False]
+ 21                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]
+ 23                -1  1   1182720  models.common.C3                        [512, 512, 1, False]
+ 24      [17, 20, 23]  1     24273  models.yolo.Detect                      [4, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [128, 256, 512]]
+Traceback (most recent call last):
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 836, in <module>
+    main(opt)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 616, in main
+    train(opt.hyp, opt, device, callbacks)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 190, in train
+    model = Model(cfg, ch=3, nc=nc, anchors=hyp.get("anchors")).to(device)  # create
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/models/yolo.py", line 257, in __init__
+    m.stride = torch.tensor([s / x.shape[-2] for x in forward(torch.zeros(1, ch, s, s))])  # forward
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/models/yolo.py", line 257, in <listcomp>
+    m.stride = torch.tensor([s / x.shape[-2] for x in forward(torch.zeros(1, ch, s, s))])  # forward
+AttributeError: 'list' object has no attribute 'shape'
+Traceback (most recent call last):
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 836, in <module>
+    main(opt)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 616, in main
+    train(opt.hyp, opt, device, callbacks)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 190, in train
+    model = Model(cfg, ch=3, nc=nc, anchors=hyp.get("anchors")).to(device)  # create
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/models/yolo.py", line 257, in __init__
+    m.stride = torch.tensor([s / x.shape[-2] for x in forward(torch.zeros(1, ch, s, s))])  # forward
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/models/yolo.py", line 257, in <listcomp>
+    m.stride = torch.tensor([s / x.shape[-2] for x in forward(torch.zeros(1, ch, s, s))])  # forward
+AttributeError: 'list' object has no attribute 'shape'
+[1mCOMET INFO:[22m ---------------------------------------------------------------------------------------
+[1mCOMET INFO:[22m Comet.ml OfflineExperiment Summary
+[1mCOMET INFO:[22m ---------------------------------------------------------------------------------------
+[1mCOMET INFO:[22m   Data:
+[1mCOMET INFO:[22m     display_summary_level : 1
+[1mCOMET INFO:[22m     url                   : [OfflineExperiment will get URL after upload]
+[1mCOMET INFO:[22m   Others:
+[1mCOMET INFO:[22m     Created from                : YOLOv5
+[1mCOMET INFO:[22m     Name                        : exp
+[1mCOMET INFO:[22m     comet_log_batch_metrics     : False
+[1mCOMET INFO:[22m     comet_log_confusion_matrix  : True
+[1mCOMET INFO:[22m     comet_log_per_class_metrics : False
+[1mCOMET INFO:[22m     comet_max_image_uploads     : 100
+[1mCOMET INFO:[22m     comet_mode                  : online
+[1mCOMET INFO:[22m     comet_model_name            : yolov5
+[1mCOMET INFO:[22m     hasNestedParams             : True
+[1mCOMET INFO:[22m     offline_experiment          : True
+[1mCOMET INFO:[22m   Parameters:
+[1mCOMET INFO:[22m     anchor_t            : 4.0
+[1mCOMET INFO:[22m     artifact_alias      : latest
+[1mCOMET INFO:[22m     batch_size          : 16
+[1mCOMET INFO:[22m     bbox_interval       : 5
+[1mCOMET INFO:[22m     box                 : 0.05
+[1mCOMET INFO:[22m     bucket              :
+[1mCOMET INFO:[22m     cache               : None
+[1mCOMET INFO:[22m     cfg                 : yolov5/models/yolov5s.yaml
+[1mCOMET INFO:[22m     cls                 : 0.5
+[1mCOMET INFO:[22m     cls_pw              : 1.0
+[1mCOMET INFO:[22m     copy_paste          : 0.0
+[1mCOMET INFO:[22m     cos_lr              : False
+[1mCOMET INFO:[22m     data                : satellite_components-71/data.yaml
+[1mCOMET INFO:[22m     degrees             : 0.0
+[1mCOMET INFO:[22m     device              :
+[1mCOMET INFO:[22m     entity              : None
+[1mCOMET INFO:[22m     epochs              : 50
+[1mCOMET INFO:[22m     evolve              : None
+[1mCOMET INFO:[22m     evolve_population   : yolov5/data/hyps
+[1mCOMET INFO:[22m     exist_ok            : False
+[1mCOMET INFO:[22m     fl_gamma            : 0.0
+[1mCOMET INFO:[22m     fliplr              : 0.5
+[1mCOMET INFO:[22m     flipud              : 0.0
+[1mCOMET INFO:[22m     freeze              : [0]
+[1mCOMET INFO:[22m     hsv_h               : 0.015
+[1mCOMET INFO:[22m     hsv_s               : 0.7
+[1mCOMET INFO:[22m     hsv_v               : 0.4
+[1mCOMET INFO:[22m     hyp|anchor_t        : 4.0
+[1mCOMET INFO:[22m     hyp|box             : 0.05
+[1mCOMET INFO:[22m     hyp|cls             : 0.5
+[1mCOMET INFO:[22m     hyp|cls_pw          : 1.0
+[1mCOMET INFO:[22m     hyp|copy_paste      : 0.0
+[1mCOMET INFO:[22m     hyp|degrees         : 0.0
+[1mCOMET INFO:[22m     hyp|fl_gamma        : 0.0
+[1mCOMET INFO:[22m     hyp|fliplr          : 0.5
+[1mCOMET INFO:[22m     hyp|flipud          : 0.0
+[1mCOMET INFO:[22m     hyp|hsv_h           : 0.015
+[1mCOMET INFO:[22m     hyp|hsv_s           : 0.7
+[1mCOMET INFO:[22m     hyp|hsv_v           : 0.4
+[1mCOMET INFO:[22m     hyp|iou_t           : 0.2
+[1mCOMET INFO:[22m     hyp|lr0             : 0.01
+[1mCOMET INFO:[22m     hyp|lrf             : 0.01
+[1mCOMET INFO:[22m     hyp|mixup           : 0.0
+[1mCOMET INFO:[22m     hyp|momentum        : 0.937
+[1mCOMET INFO:[22m     hyp|mosaic          : 1.0
+[1mCOMET INFO:[22m     hyp|obj             : 1.0
+[1mCOMET INFO:[22m     hyp|obj_pw          : 1.0
+[1mCOMET INFO:[22m     hyp|perspective     : 0.0
+[1mCOMET INFO:[22m     hyp|scale           : 0.5
+[1mCOMET INFO:[22m     hyp|shear           : 0.0
+[1mCOMET INFO:[22m     hyp|translate       : 0.1
+[1mCOMET INFO:[22m     hyp|warmup_bias_lr  : 0.1
+[1mCOMET INFO:[22m     hyp|warmup_epochs   : 3.0
+[1mCOMET INFO:[22m     hyp|warmup_momentum : 0.8
+[1mCOMET INFO:[22m     hyp|weight_decay    : 0.0005
+[1mCOMET INFO:[22m     image_weights       : False
+[1mCOMET INFO:[22m     imgsz               : 640
+[1mCOMET INFO:[22m     iou_t               : 0.2
+[1mCOMET INFO:[22m     label_smoothing     : 0.0
+[1mCOMET INFO:[22m     local_rank          : -1
+[1mCOMET INFO:[22m     lr0                 : 0.01
+[1mCOMET INFO:[22m     lrf                 : 0.01
+[1mCOMET INFO:[22m     mixup               : 0.0
+[1mCOMET INFO:[22m     momentum            : 0.937
+[1mCOMET INFO:[22m     mosaic              : 1.0
+[1mCOMET INFO:[22m     multi_scale         : False
+[1mCOMET INFO:[22m     name                : exp
+[1mCOMET INFO:[22m     ndjson_console      : False
+[1mCOMET INFO:[22m     ndjson_file         : False
+[1mCOMET INFO:[22m     noautoanchor        : False
+[1mCOMET INFO:[22m     noplots             : False
+[1mCOMET INFO:[22m     nosave              : False
+[1mCOMET INFO:[22m     noval               : False
+[1mCOMET INFO:[22m     obj                 : 1.0
+[1mCOMET INFO:[22m     obj_pw              : 1.0
+[1mCOMET INFO:[22m     optimizer           : SGD
+[1mCOMET INFO:[22m     patience            : 100
+[1mCOMET INFO:[22m     perspective         : 0.0
+[1mCOMET INFO:[22m     project             : yolov5/runs/train
+[1mCOMET INFO:[22m     quad                : False
+[1mCOMET INFO:[22m     rect                : False
+[1mCOMET INFO:[22m     resume              : False
+[1mCOMET INFO:[22m     resume_evolve       : None
+[1mCOMET INFO:[22m     save_dir            : yolov5/runs/train/exp16
+[1mCOMET INFO:[22m     save_period         : -1
+[1mCOMET INFO:[22m     scale               : 0.5
+[1mCOMET INFO:[22m     seed                : 0
+[1mCOMET INFO:[22m     shear               : 0.0
+[1mCOMET INFO:[22m     single_cls          : False
+[1mCOMET INFO:[22m     sync_bn             : False
+[1mCOMET INFO:[22m     translate           : 0.1
+[1mCOMET INFO:[22m     upload_dataset      : False
+[1mCOMET INFO:[22m     val_conf_threshold  : 0.001
+[1mCOMET INFO:[22m     val_iou_threshold   : 0.6
+[1mCOMET INFO:[22m     warmup_bias_lr      : 0.1
+[1mCOMET INFO:[22m     warmup_epochs       : 3.0
+[1mCOMET INFO:[22m     warmup_momentum     : 0.8
+[1mCOMET INFO:[22m     weight_decay        : 0.0005
+[1mCOMET INFO:[22m     weights             :
+[1mCOMET INFO:[22m     workers             : 8
+[1mCOMET INFO:[22m   Uploads:
+[1mCOMET INFO:[22m     asset                        : 3 (1.50 KB)
+[1mCOMET INFO:[22m     conda-environment-definition : 1
+[1mCOMET INFO:[22m     conda-info                   : 1
+[1mCOMET INFO:[22m     conda-specification          : 1
+[1mCOMET INFO:[22m     environment details          : 1
+[1mCOMET INFO:[22m     git metadata                 : 1
+[1mCOMET INFO:[22m     installed packages           : 1
+[1mCOMET INFO:[22m     os packages                  : 1
+[1mCOMET INFO:
+[1mCOMET INFO:[22m Still saving offline stats to messages file before program termination (may take up to 120 seconds)
+[1mCOMET INFO:[22m Starting saving the offline archive
+[1mCOMET INFO:[22m To upload this offline experiment, run:
+    comet upload /home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs/967f52fd56414bc29d936f00434c86e4.zip

@@ -1,0 +1,58 @@
+COMET WARNING: Comet credentials have not been set. Comet will default to offline logging. Please set your credentials to enable online logging.
+[1mCOMET INFO:[22m Using '/home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs' path as offline directory. Pass 'offline_directory' parameter into constructor or set the 'COMET_OFFLINE_DIRECTORY' environment variable to manually choose where to store offline experiment archives.
+Dataset not found ⚠️, missing paths ['/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/Blake/PEEKxYOLO/yolov5/data/satellite_components-71/valid/images']
+Traceback (most recent call last):
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 836, in <module>
+    main(opt)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 616, in main
+    train(opt.hyp, opt, device, callbacks)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 147, in train
+    loggers = Loggers(
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/loggers/__init__.py", line 146, in __init__
+    self.comet_logger = CometLogger(self.opt, self.hyp)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/loggers/comet/__init__.py", line 97, in __init__
+    self.data_dict = self.check_dataset(self.opt.data)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/loggers/comet/__init__.py", line 247, in check_dataset
+    return check_dataset(data_file)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/general.py", line 534, in check_dataset
+    raise Exception("Dataset not found ❌")
+Exception: Dataset not found ❌
+Traceback (most recent call last):
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 836, in <module>
+    main(opt)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 616, in main
+    train(opt.hyp, opt, device, callbacks)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/train.py", line 147, in train
+    loggers = Loggers(
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/loggers/__init__.py", line 146, in __init__
+    self.comet_logger = CometLogger(self.opt, self.hyp)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/loggers/comet/__init__.py", line 97, in __init__
+    self.data_dict = self.check_dataset(self.opt.data)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/loggers/comet/__init__.py", line 247, in check_dataset
+    return check_dataset(data_file)
+  File "/home/rwhite/NFS/Blake/PEEKxYOLO/yolov5/utils/general.py", line 534, in check_dataset
+    raise Exception("Dataset not found ❌")
+Exception: Dataset not found ❌
+[1mCOMET INFO:[22m ---------------------------------------------------------------------------------------
+[1mCOMET INFO:[22m Comet.ml OfflineExperiment Summary
+[1mCOMET INFO:[22m ---------------------------------------------------------------------------------------
+[1mCOMET INFO:[22m   Data:
+[1mCOMET INFO:[22m     display_summary_level : 1
+[1mCOMET INFO:[22m     url                   : [OfflineExperiment will get URL after upload]
+[1mCOMET INFO:[22m   Others:
+[1mCOMET INFO:[22m     Name               : exp
+[1mCOMET INFO:[22m     offline_experiment : True
+[1mCOMET INFO:[22m   Uploads:
+[1mCOMET INFO:[22m     asset                        : 1 (449 bytes)
+[1mCOMET INFO:[22m     conda-environment-definition : 1
+[1mCOMET INFO:[22m     conda-info                   : 1
+[1mCOMET INFO:[22m     conda-specification          : 1
+[1mCOMET INFO:[22m     environment details          : 1
+[1mCOMET INFO:[22m     git metadata                 : 1
+[1mCOMET INFO:[22m     installed packages           : 1
+[1mCOMET INFO:[22m     os packages                  : 1
+[1mCOMET INFO:
+[1mCOMET INFO:[22m Still saving offline stats to messages file before program termination (may take up to 120 seconds)
+[1mCOMET INFO:[22m Starting saving the offline archive
+[1mCOMET INFO:[22m To upload this offline experiment, run:
+    comet upload /home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs/2da3fc688064476ea1a9f3b3fc2101da.zip

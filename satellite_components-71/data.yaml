@@ -1,0 +1,16 @@
+names:
+- antenna
+- body
+- solar
+- thruster
+nc: 4
+roboflow:
+  license: Private
+  project: satellite_components
+  url: https://app.roboflow.com/forairoboflow-gmail-com/satellite_components/71
+  version: 71
+  workspace: forairoboflow-gmail-com
+train: ../satellite_components-71/train/images
+val: ../satellite_components-71/valid/images
+test: ../satellite_components-71/test/images
+

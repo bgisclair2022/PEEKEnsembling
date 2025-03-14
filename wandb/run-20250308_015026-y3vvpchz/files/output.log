@@ -1,0 +1,225 @@
+COMET WARNING: Comet credentials have not been set. Comet will default to offline logging. Please set your credentials to enable online logging.
+[1mCOMET INFO:[22m Using '/home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs' path as offline directory. Pass 'offline_directory' parameter into constructor or set the 'COMET_OFFLINE_DIRECTORY' environment variable to manually choose where to store offline experiment archives.
+[1mCOMET ERROR:[22m Failed to set run cmd args
+Overriding model.yaml nc=80 with nc=4
+                 from  n    params  module                                  arguments
+  0                -1  1      3520  models.common.Conv                      [3, 32, 6, 2, 2]
+  1                -1  1     18560  models.common.Conv                      [32, 64, 3, 2]
+  2                -1  1     18816  models.common.C3                        [64, 64, 1]
+  3                -1  1     73984  models.common.Conv                      [64, 128, 3, 2]
+  4                -1  2    115712  models.common.C3                        [128, 128, 2]
+  5                -1  1    295424  models.common.Conv                      [128, 256, 3, 2]
+  6                -1  3    625152  models.common.C3                        [256, 256, 3]
+  7                -1  1   1180672  models.common.Conv                      [256, 512, 3, 2]
+  8                -1  1   1182720  models.common.C3                        [512, 512, 1]
+  9                -1  1    656896  models.common.SPPF                      [512, 512, 5]
+ 10                -1  1    131584  models.common.Conv                      [512, 256, 1, 1]
+ 11                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 12           [-1, 6]  1         0  models.common.Concat                    [1]
+ 13                -1  1    361984  models.common.C3                        [512, 256, 1, False]
+ 14                -1  1     33024  models.common.Conv                      [256, 128, 1, 1]
+ 15                -1  1         0  torch.nn.modules.upsampling.Upsample    [None, 2, 'nearest']
+ 16           [-1, 4]  1         0  models.common.Concat                    [1]
+ 17                -1  1     90880  models.common.C3                        [256, 128, 1, False]
+ 18                -1  1    147712  models.common.Conv                      [128, 128, 3, 2]
+ 19          [-1, 14]  1         0  models.common.Concat                    [1]
+ 20                -1  1    296448  models.common.C3                        [256, 256, 1, False]
+ 21                -1  1    590336  models.common.Conv                      [256, 256, 3, 2]
+ 22          [-1, 10]  1         0  models.common.Concat                    [1]
+ 23                -1  1   1182720  models.common.C3                        [512, 512, 1, False]
+ 24      [17, 20, 23]  1     24273  models.yolo.Detect                      [4, [[10, 13, 16, 30, 33, 23], [30, 61, 62, 45, 59, 119], [116, 90, 156, 198, 373, 326]], [128, 256, 512]]
+YOLOv5s summary: 214 layers, 7030417 parameters, 7030417 gradients, 16.0 GFLOPs
+[34m[1mAMP: [39m[22mchecks passed ✅
+[34m[1moptimizer:[39m[22m SGD(lr=0.01) with parameter groups 57 weight(decay=0.0), 60 weight(decay=0.0005), 60 bias
+WARNING ⚠️ DP not recommended, use torch.distributed.run for best DDP Multi-GPU results.
+See Multi-GPU Tutorial at https://docs.ultralytics.com/yolov5/tutorials/multi_gpu_training to get started.
+[34m[1mtrain: [39m[22mScanning /home/rwhite/NFS/Blake/PEEKxYOLO/satellite_components-71/train/labels.cache... 1005 images, 7 backgrounds, 0 corrupt: 100%|██████████| 1005/1005 [00:00<?, ?it/s]
+[34m[1mval: [39m[22mScanning /home/rwhite/NFS/Blake/PEEKxYOLO/satellite_components-71/valid/labels.cache... 186 images, 0 backgrounds, 0 corrupt: 100%|██████████| 186/186 [00:00<?, ?it/s]
+[34m[1mAutoAnchor: [39m[22m4.38 anchors/target, 0.985 Best Possible Recall (BPR). Current anchors are a good fit to dataset ✅
+Plotting labels to yolov5/runs/train/exp19/labels.jpg...
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1498: FutureWarning: is_categorical_dtype is deprecated and will be removed in a future version. Use isinstance(dtype, CategoricalDtype) instead
+  if pd.api.types.is_categorical_dtype(vector):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+/home/rwhite/mambaforge/envs/notebook_env/lib/python3.10/site-packages/seaborn/_oldcore.py:1119: FutureWarning: use_inf_as_na option is deprecated and will be removed in a future version. Convert inf values to NaN before operating instead.
+  with pd.option_context('mode.use_inf_as_na', True):
+Image sizes 640 train, 640 val
+Using 8 dataloader workers
+Logging results to [1myolov5/runs/train/exp19
+Starting training for 50 epochs...
+      Epoch    GPU_mem   box_loss   obj_loss   cls_loss  Instances       Size
+       0/49      1.99G     0.1127    0.06185    0.04504        183        640:   3%|▎         | 2/63 [00:02<01:10,  1.16s/it]
+       0/49      1.99G     0.1118     0.0636    0.04564        213        640:  17%|█▋        | 11/63 [00:04<00:12,  4.07it/s]
+       0/49      1.99G     0.1105    0.06471     0.0453        177        640:  33%|███▎      | 21/63 [00:06<00:08,  4.87it/s]
+       0/49      1.99G     0.1105    0.06471     0.0453        177        640:  33%|███▎      | 21/63 [00:06<00:08,  4.87it/s]
+       0/49      1.99G     0.1105    0.06471     0.0453        177        640:  33%|███▎      | 21/63 [00:06<00:08,  4.87it/s]
+       0/49      1.99G     0.1105    0.06471     0.0453        177        640:  33%|███▎      | 21/63 [00:06<00:08,  4.87it/s]
+       0/49      1.99G     0.1105    0.06471     0.0453        177        640:  33%|███▎      | 21/63 [00:06<00:08,  4.87it/s]
+       0/49      1.99G     0.1105    0.06471     0.0453        177        640:  33%|███▎      | 21/63 [00:06<00:08,  4.87it/s]
+[1mCOMET INFO:[22m     ndjson_file         : False : 100/lib/python3.10/site-packages/ultralytics/utils/patches.py", line 84, in torch_save
+[1mCOMET INFO:[22m     hyp|degrees         : 0.0
+[1mCOMET INFO:[22m     hyp|fl_gamma        : 0.0
+[1mCOMET INFO:[22m     hyp|fliplr          : 0.5
+[1mCOMET INFO:[22m     hyp|flipud          : 0.0
+[1mCOMET INFO:[22m     hyp|hsv_h           : 0.015
+[1mCOMET INFO:[22m     hyp|hsv_s           : 0.7
+[1mCOMET INFO:[22m     hyp|hsv_v           : 0.4
+[1mCOMET INFO:[22m     hyp|iou_t           : 0.2
+[1mCOMET INFO:[22m     hyp|lr0             : 0.01
+[1mCOMET INFO:[22m     hyp|lrf             : 0.01
+[1mCOMET INFO:[22m     hyp|mixup           : 0.0
+[1mCOMET INFO:[22m     hyp|momentum        : 0.937
+[1mCOMET INFO:[22m     hyp|mosaic          : 1.0
+[1mCOMET INFO:[22m     hyp|obj             : 1.0
+[1mCOMET INFO:[22m     hyp|obj_pw          : 1.0
+[1mCOMET INFO:[22m     hyp|perspective     : 0.0
+[1mCOMET INFO:[22m     hyp|scale           : 0.5
+[1mCOMET INFO:[22m     hyp|shear           : 0.0
+[1mCOMET INFO:[22m     hyp|translate       : 0.1
+[1mCOMET INFO:[22m     hyp|warmup_bias_lr  : 0.1
+[1mCOMET INFO:[22m     hyp|warmup_epochs   : 3.0
+[1mCOMET INFO:[22m     hyp|warmup_momentum : 0.8
+[1mCOMET INFO:[22m     hyp|weight_decay    : 0.0005
+[1mCOMET INFO:[22m     image_weights       : False
+[1mCOMET INFO:[22m     imgsz               : 640
+[1mCOMET INFO:[22m     iou_t               : 0.2
+[1mCOMET INFO:[22m     label_smoothing     : 0.0
+[1mCOMET INFO:[22m     local_rank          : -1
+[1mCOMET INFO:[22m     lr0                 : 0.01
+[1mCOMET INFO:[22m     lrf                 : 0.01
+[1mCOMET INFO:[22m     mixup               : 0.0
+[1mCOMET INFO:[22m     momentum            : 0.937
+[1mCOMET INFO:[22m     mosaic              : 1.0
+[1mCOMET INFO:[22m     multi_scale         : False
+[1mCOMET INFO:[22m     name                : exp
+[1mCOMET INFO:[22m     ndjson_console      : False
+[1mCOMET INFO:[22m     ndjson_file         : False : 100/lib/python3.10/site-packages/ultralytics/utils/patches.py", line 84, in torch_save
+[1mCOMET INFO:[22m     noautoanchor        : False
+[1mCOMET INFO:[22m     noplots             : False
+[1mCOMET INFO:[22m     nosave              : False
+[1mCOMET INFO:[22m     noval               : False
+[1mCOMET INFO:[22m     obj                 : 1.0
+[1mCOMET INFO:[22m     obj_pw              : 1.0
+[1mCOMET INFO:[22m     optimizer           : SGD
+[1mCOMET INFO:[22m     patience            : 100
+[1mCOMET INFO:[22m     perspective         : 0.0
+[1mCOMET INFO:[22m     project             : yolov5/runs/train
+[1mCOMET INFO:[22m     quad                : False
+[1mCOMET INFO:[22m     rect                : False
+[1mCOMET INFO:[22m     resume              : False
+[1mCOMET INFO:[22m     resume_evolve       : None
+[1mCOMET INFO:[22m     save_dir            : yolov5/runs/train/exp19
+[1mCOMET INFO:[22m     save_period         : -1
+[1mCOMET INFO:[22m     scale               : 0.5
+[1mCOMET INFO:[22m     seed                : 0
+[1mCOMET INFO:[22m     shear               : 0.0
+[1mCOMET INFO:[22m     single_cls          : False
+[1mCOMET INFO:[22m     sync_bn             : False
+[1mCOMET INFO:[22m     translate           : 0.1
+[1mCOMET INFO:[22m     upload_dataset      : False
+[1mCOMET INFO:[22m     val_conf_threshold  : 0.001
+[1mCOMET INFO:[22m     val_iou_threshold   : 0.6
+[1mCOMET INFO:[22m     warmup_bias_lr      : 0.1
+[1mCOMET INFO:[22m     warmup_epochs       : 3.0
+[1mCOMET INFO:[22m     warmup_momentum     : 0.8
+[1mCOMET INFO:[22m     weight_decay        : 0.0005
+[1mCOMET INFO:[22m     weights             :
+[1mCOMET INFO:[22m     workers             : 8
+[1mCOMET INFO:[22m   Uploads:
+[1mCOMET INFO:[22m     asset                        : 3 (1.50 KB)
+[1mCOMET INFO:[22m     conda-environment-definition : 1
+[1mCOMET INFO:[22m     conda-info                   : 1
+[1mCOMET INFO:[22m     conda-specification          : 1
+[1mCOMET INFO:[22m     environment details          : 1
+[1mCOMET INFO:[22m     git metadata                 : 1
+[1mCOMET INFO:[22m     images                       : 12
+[1mCOMET INFO:[22m     installed packages           : 1
+[1mCOMET INFO:[22m     model graph                  : 1
+[1mCOMET INFO:[22m     os packages                  : 1
+[1mCOMET INFO:
+[1mCOMET INFO:[22m Still saving offline stats to messages file before program termination (may take up to 120 seconds)
+[1mCOMET INFO:[22m Starting saving the offline archive
+[1mCOMET INFO:[22m To upload this offline experiment, run:
+    comet upload /home/rwhite/NFS/Blake/PEEKxYOLO/.cometml-runs/0beca797f1db4e74b94381a950e5dd5b.zip

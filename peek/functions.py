@@ -13,15 +13,15 @@ import torchvision.transforms as transforms
 from pathlib import Path
 from scipy.special import entr
 
-def compute_PEEK(feature_maps, h, w):
+def compute_PEEK(feature_maps):
     # make feature map positive
-    positivized_maps = feature_maps + np.abs(np.min(feature_maps))
-
+    positivized_maps = feature_maps + torch.abs(torch.min(feature_maps)) + 1e-10
     # compute entropy maps
-    entropy_map = -np.sum(entr(positivized_maps), axis=-1)
+    ## dim = 1 for pytorch friends, dim= -1 is for the widths
+    peek_map = -torch.sum(positivized_maps * torch.log(positivized_maps), dim=1)
 
-    # reshape to size of real image (width x height)
-    peek_map = cv2.resize(entropy_map, (w, h))
+    peek_map = peek_map.unsqueeze(1)  # Add the missing dimension back
+    return peek_map
     
     return peek_map
 
@@ -154,8 +154,17 @@ class VGG16FeatureExtractor(torch.nn.Module):
                 pickle.dump([feature for feature in features], f)
             print(f"Saved all features to {filename}")
 
+class check_PEEKs(Exception):
+    def __init__(self, message = "PEEK lists must be the same length"):
+        self.message = message
+        super().__init__(self.message)
+
+    def check_length(self, a, b):
+        if len(a) != len(b):
+            raise unequal_PEEKs(self.message)
+
 class PEEKLossWrapper(nn.Module):
-    def __init__(self, base_loss_fn, custom_weight=1.0, pos=2, beta=1.0, lam=1.0):
+    def __init__(self, base_loss_fn, custom_weight=1.0, pos=2, alpha=1.0, beta=1.0, lam=1.0):
         """
         Args:
             base_loss_fn (callable): The base loss function (e.g., nn.CrossEntropyLoss()).
@@ -168,10 +177,11 @@ class PEEKLossWrapper(nn.Module):
         self.base_loss_fn = base_loss_fn
         self.custom_weight = custom_weight
         self.pos = pos
+        self.alpha = alpha
         self.beta = beta
         self.lam = lam
 
-    def forward(self, input, target, PEEKs):
+    def forward(self, input, target, current_PEEKs, past_PEEKs):
         """
         Args:
             input (Tensor): Model predictions for the base loss.
@@ -179,7 +189,18 @@ class PEEKLossWrapper(nn.Module):
             PEEKs (PEEK maps from models): Extra model outputs used for computing the custom PEEK loss.
         """
         # Compute the base loss using the provided loss function
-        base_loss = self.base_loss_fn(input, target)
+        base_loss, loss_items = self.alpha*self.base_loss_fn(input, target)
+
+        try:
+            check_PEEKs.check_length(current_PEEKs, past_PEEKs)
+        except check_PEEKs as e:
+            print("Exception:", e)
+
+        PEEKs = []
+
+        for i in range(0, len(current_PEEKs)):
+            PEEKs.append(current_PEEKs[i])
+            PEEKs.append(past_PEEKs[i])
 
         # Compute PEEK loss
         Sigmoid = nn.Sigmoid()
@@ -188,24 +209,19 @@ class PEEKLossWrapper(nn.Module):
 
         # Process PEEKs in groups defined by self.pos
         for i in range(0, len(PEEKs), self.pos):
-            PEEK_dif = 0.0
-            PEEK_conservation = 0.0
-            # For each group, compare the current PEEK with the next ones
+            PEEK_dif = 0
+            PEEK_conservation = 0
             for j in range(1, self.pos):
-                if i + j >= len(PEEKs):
-                    break
-                current_PEEK = Sigmoid(PEEKs[i])
-                next_PEEK = Sigmoid(PEEKs[i + j])
-                PEEK_dif += PEEK_criterion(current_PEEK, next_PEEK)
-                PEEK_conservation += torch.sum(current_PEEK) - torch.sum(next_PEEK)
-            # Normalize difference term if possible
-            if self.pos - 1 > 0:
-                PEEK_dif = PEEK_dif / (self.pos - 1)
-            # Combine terms: here a negative sign on the difference term encourages differences,
-            # while the conservation term is added directly.
-            custom_loss += -self.beta * PEEK_dif + self.lam * PEEK_conservation
+                current_PEEK, prev_PEEK = Sigmoid(PEEKs[i]), Sigmoid(PEEKs[i+j])
+                PEEK_dif += PEEK_criterion(current_PEEK, prev_PEEK)
+                PEEK_conservation += torch.sum(current_PEEK) - torch.sum(prev_PEEK)
+
+            PEEK_dif = (PEEK_dif)/(self.pos-1) # Bring it between [0,1]
+
+            custom_loss += -1*((self.beta)*PEEK_dif)+(self.lam)*PEEK_conservation #MAE encourages the images to be similar,
+            # so taking the negative does the opposite i.e: encourages them to be different.
 
         # Combine the base loss with the weighted custom loss term
         total_loss = base_loss + self.custom_weight * custom_loss
 
-        return total_loss
+        return total_loss, loss_items

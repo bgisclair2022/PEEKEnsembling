@@ -94,13 +94,15 @@ from utils.torch_utils import (
     torch_distributed_zero_first,
 )
 
+from ..peek import functions
+
 LOCAL_RANK = int(os.getenv("LOCAL_RANK", -1))  # https://pytorch.org/docs/stable/elastic/run.html
 RANK = int(os.getenv("RANK", -1))
 WORLD_SIZE = int(os.getenv("WORLD_SIZE", 1))
 GIT_INFO = check_git_info()
 
 
-def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictionary
+def train(hyp, opt, device, callbacks, peek_save_dir, load_dir, ensemblist=False):  # hyp is path/to/hyp.yaml or hyp dictionary
     save_dir, epochs, batch_size, weights, single_cls, evolve, data, cfg, resume, noval, nosave, workers, freeze = (
         Path(opt.save_dir),
         opt.epochs,
@@ -317,7 +319,13 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
     scheduler.last_epoch = start_epoch - 1  # do not move
     scaler = torch.cuda.amp.GradScaler(enabled=amp)
     stopper, stop = EarlyStopping(patience=opt.patience), False
-    compute_loss = ComputeLoss(model)  # init loss class
+
+    # If ensembling -> use the PEEK map loss.
+    if ensemblist:
+        compute_loss = functions.PEEKLossWrapper(ComputeLoss(model))
+    else:
+        compute_loss = ComputeLoss(model)
+
     callbacks.run("on_train_start")
     LOGGER.info(
         f'Image sizes {imgsz} train, {imgsz} val\n'
@@ -325,6 +333,11 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
         f"Logging results to {colorstr('bold', save_dir)}\n"
         f'Starting training for {epochs} epochs...'
     )
+
+    # Load past PEEks:
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    past_PEEKs = torch.load(load_dir, map_location=device)
+
     for epoch in range(start_epoch, epochs):  # epoch ------------------------------------------------------------------
         callbacks.run("on_train_epoch_start")
         model.train()
@@ -373,8 +386,14 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
 
             # Forward
             with torch.cuda.amp.autocast(amp):
-                pred = model(imgs)  # forward
-                loss, loss_items = compute_loss(pred, targets.to(device))  # loss scaled by batch_size
+                current_PEEKs, pred = model(imgs)  # forward
+
+                # if the model is an ensemblist, it requires a different loss function:
+                if ensemblist:
+                    loss, loss_items = compute_loss(pred, targets.to(device), current_PEEKs, past_PEEKs)  # loss scaled by batch_size
+                else:
+                    loss, loss_items = compute_loss(pred, targets.to(device))  # loss scaled by batch_size
+
                 if RANK != -1:
                     loss *= WORLD_SIZE  # gradient averaged between devices in DDP mode
                 if opt.quad:
@@ -406,6 +425,9 @@ def train(hyp, opt, device, callbacks):  # hyp is path/to/hyp.yaml or hyp dictio
                 if callbacks.stop_training:
                     return
             # end batch ------------------------------------------------------------------------------------------------
+
+        # Save PEEKS:
+        torch.save(current_PEEKs, peek_save_dir)
 
         # Scheduler
         lr = [x["lr"] for x in optimizer.param_groups]  # for loggers
@@ -555,6 +577,23 @@ def parse_opt(known=False):
     parser.add_argument("--ndjson-console", action="store_true", help="Log ndjson to console")
     parser.add_argument("--ndjson-file", action="store_true", help="Log ndjson to file")
 
+    # Ensemblist flag
+    parser.add_argument("--ensemblist", action="store_true", help="Enable ensembling with PEEK map")
+
+    # Save/ load directories for PEEK maps
+    parser.add_argument(
+        "--peek-save-dir",
+        type=str,
+        default="peeks/current_peeks.pt",
+        help="Path where current PEEK maps will be saved (e.g., 'peeks/current_peeks.pt')."
+    )
+    parser.add_argument(
+        "--load-dir",
+        type=str,
+        default="peeks/past_peeks.pt",
+        help="Path from which past PEEK maps will be loaded (e.g., 'peeks/past_peeks.pt')."
+    )
+
     return parser.parse_known_args()[0] if known else parser.parse_args()
 
 
@@ -613,7 +652,7 @@ def main(opt, callbacks=Callbacks()):
 
     # Train
     if not opt.evolve:
-        train(opt.hyp, opt, device, callbacks)
+        train(opt.hyp, opt, device, callbacks, peek_save_dir=opt.peek_save_dir, load_dir=opt.load_dir, ensemblist=opt.ensemblist)
 
     # Evolve hyperparameters (optional)
     else:

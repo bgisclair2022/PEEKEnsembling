@@ -10,8 +10,8 @@ import argparse
 import contextlib
 import math
 import os
-import platform
 import sys
+import platform
 from copy import deepcopy
 from pathlib import Path
 from peek.functions import compute_PEEK
@@ -90,6 +90,19 @@ class Detect(nn.Module):
 
     def forward(self, x):
         z = []  # inference output
+        PEEKs = [] # list for PEEK maps
+
+        # Append maps from blocks 12, 16, 19, and 22 (places where lower/ higher res feature maps are concated)
+        for j in range(len(x)):
+            if j == 12:
+                PEEKs.append(compute_PEEK(x[j]))
+            elif j == 16:
+                PEEKs.append(compute_PEEK(x[j]))
+            elif j == 19:
+                PEEKs.append(compute_PEEK(x[j]))
+            elif j == 22:
+                PEEKs.append(compute_PEEK(x[j]))
+
         for i in range(self.nl):
             x[i] = self.m[i](x[i])  # conv
             bs, _, ny, nx = x[i].shape  # x(bs,255,20,20) to x(bs,3,20,20,85)
@@ -111,7 +124,7 @@ class Detect(nn.Module):
                     y = torch.cat((xy, wh, conf), 4)
                 z.append(y.view(bs, self.na * nx * ny, self.no))
 
-        return x if self.training else (torch.cat(z, 1),) if self.export else (torch.cat(z, 1), x)
+        return PEEKs, x if self.training else (torch.cat(z, 1),) if self.export else (torch.cat(z, 1), x)
 
     def _make_grid(self, nx=20, ny=20, i=0, torch_1_10=check_version(torch.__version__, "1.10.0")):
         d = self.anchors[i].device
@@ -149,7 +162,6 @@ class BaseModel(nn.Module):
     # modified forward pass ==========================================================================================
     def _forward_once(self, x, profile=False, visualize=False):
         y, dt = [], []  # outputs
-        PEEKmaps = []  # Add a list to store feature maps ====================
 
         for m in self.model:
             if m.f != -1:  # if not from previous layer
@@ -161,17 +173,6 @@ class BaseModel(nn.Module):
             
             y.append(x if m.i in self.save else None)  # save output
 
-            # Append maps from blocks 12, 16, 19, and 22 (places where lower/ higher res feature maps are concated)
-            match m.i:
-                case 12:
-                    PEEKmaps.append(compute_PEEK(x))
-                case 16:
-                    PEEKmaps.append(compute_PEEK(x))
-                case 19:
-                    PEEKmaps.append(compute_PEEK(x))
-                case 22:
-                    PEEKmaps.append(compute_PEEK(x))
-                
                 # feature_map_layers.append({
                 #     'layer_index': i,
                 #     'layer_type': m.type,
@@ -182,7 +183,7 @@ class BaseModel(nn.Module):
                 feature_visualization(x, m.type, m.i, save_dir=visualize)
         
         #return x
-        return x, PEEKmaps  # return the output AND feature maps
+        return x  # return the output AND feature maps
     # =================================================================================================================
 
     def _profile_one_layer(self, m, x, dt):
@@ -476,6 +477,6 @@ if __name__ == "__main__":
                 _ = Model(cfg)
             except Exception as e:
                 print(f"Error in {cfg}: {e}")
-
+                
     else:  # report fused model summary
-        model.fuse()
+        model.fuse() #profile layer by layer

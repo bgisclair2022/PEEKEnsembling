@@ -968,7 +968,7 @@ class LoadImagesAndLabels(Dataset):
 
     @staticmethod
     def collate_fn(batch):
-        im, label, path, shapes = zip(*batch)  # transposed
+        im, label, path, shapes = zip(*batch)  # transposed        
         for i, lb in enumerate(label):
             lb[:, 0] = i  # add target image index for build_targets()
         return torch.stack(im, 0), torch.cat(label, 0), path, shapes
@@ -1305,3 +1305,4 @@ def create_classification_dataloader(
         worker_init_fn=seed_worker,
         generator=generator,
     )  # or DataLoader(persistent_workers=True)
+

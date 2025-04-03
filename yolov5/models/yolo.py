@@ -90,19 +90,6 @@ class Detect(nn.Module):
 
     def forward(self, x):
         z = []  # inference output
-        PEEKs = [] # list for PEEK maps
-
-        # Append maps from blocks 12, 16, 19, and 22 (places where lower/ higher res feature maps are concated)
-        for j in range(len(x)):
-            if j == 12:
-                PEEKs.append(compute_PEEK(x[j]))
-            elif j == 16:
-                PEEKs.append(compute_PEEK(x[j]))
-            elif j == 19:
-                PEEKs.append(compute_PEEK(x[j]))
-            elif j == 22:
-                PEEKs.append(compute_PEEK(x[j]))
-
         for i in range(self.nl):
             x[i] = self.m[i](x[i])  # conv
             bs, _, ny, nx = x[i].shape  # x(bs,255,20,20) to x(bs,3,20,20,85)
@@ -124,7 +111,7 @@ class Detect(nn.Module):
                     y = torch.cat((xy, wh, conf), 4)
                 z.append(y.view(bs, self.na * nx * ny, self.no))
 
-        return PEEKs, x if self.training else (torch.cat(z, 1),) if self.export else (torch.cat(z, 1), x)
+        return x if self.training else (torch.cat(z, 1),) if self.export else (torch.cat(z, 1), x)
 
     def _make_grid(self, nx=20, ny=20, i=0, torch_1_10=check_version(torch.__version__, "1.10.0")):
         d = self.anchors[i].device
@@ -161,18 +148,24 @@ class BaseModel(nn.Module):
 
     # modified forward pass ==========================================================================================
     def _forward_once(self, x, profile=False, visualize=False):
-        y, dt = [], []  # outputs
+        y, dt, PEEKs = [], [], []  # outputs
+        
+        for i, m in enumerate(self.model):
 
-        for m in self.model:
             if m.f != -1:  # if not from previous layer
                 x = y[m.f] if isinstance(m.f, int) else [x if j == -1 else y[j] for j in m.f]  # from earlier layers
+            
             if profile:
                 self._profile_one_layer(m, x, dt)
                 
             x = m(x)  # run
             
             y.append(x if m.i in self.save else None)  # save output
-
+            
+            # If this layer is one of the maps (blocks 12, 16, 19, and 22):
+            if i == [12, 16, 19, 22]:
+                PEEKs.append(compute_PEEK(x))
+                
                 # feature_map_layers.append({
                 #     'layer_index': i,
                 #     'layer_type': m.type,
@@ -181,9 +174,14 @@ class BaseModel(nn.Module):
             
             if visualize:
                 feature_visualization(x, m.type, m.i, save_dir=visualize)
+
+        # print("PEEK MAPS: ", PEEKs)
         
-        #return x
-        return x  # return the output AND feature maps
+        #return outputs: 'PEEKs' and 'x' if training, just 'x' if not:
+        if self.training:
+            return PEEKs, x
+        else: 
+            return x  
     # =================================================================================================================
 
     def _profile_one_layer(self, m, x, dt):

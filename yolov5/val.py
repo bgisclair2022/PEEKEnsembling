@@ -60,7 +60,6 @@ from utils.metrics import ConfusionMatrix, ap_per_class, box_iou
 from utils.plots import output_to_target, plot_images, plot_val_study
 from utils.torch_utils import select_device, smart_inference_mode
 
-
 def save_one_txt(predn, save_conf, shape, file):
     # Save one txt result
     gn = torch.tensor(shape)[[1, 0, 1, 0]]  # normalization gain whwh
@@ -143,6 +142,9 @@ def run(
     plots=True,
     callbacks=Callbacks(),
     compute_loss=None,
+    ensemblist = False, 
+    current_PEEKs = None,
+    past_PEEKs = None
 ):
     # Initialize/load model and set device
     training = model is not None
@@ -233,7 +235,12 @@ def run(
 
         # Loss
         if compute_loss:
-            loss += compute_loss(train_out, targets)[1]  # box, obj, cls
+                # if the model is an ensemblist, it requires a different loss function:
+                if ensemblist:
+                    loss += compute_loss(train_out, targets, current_PEEKs, past_PEEKs)[1]
+                else:
+                    loss += compute_loss(train_out, targets)[1]
+                
 
         # NMS
         targets[:, 2:] *= torch.tensor((width, height, width, height), device=device)  # to pixels

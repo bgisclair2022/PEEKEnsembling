@@ -390,7 +390,7 @@ def train(hyp, opt, device, callbacks, peek_dir, ensemblist=False):  # hyp is pa
             # Forward
             with torch.cuda.amp.autocast(amp):
                 current_PEEKs, pred = model(imgs)  # forward
-
+                
                 # if the model is an ensemblist, it requires a different loss function:
                 if ensemblist:
                     loss, loss_items = compute_loss(pred, targets.to(device), current_PEEKs, past_PEEKs)  # loss scaled by batch_size
@@ -429,33 +429,50 @@ def train(hyp, opt, device, callbacks, peek_dir, ensemblist=False):  # hyp is pa
                     return
             # end batch ------------------------------------------------------------------------------------------------
 
-        # Save PEEKS:
-        torch.save(current_PEEKs, peek_dir)
-
         # Scheduler
         lr = [x["lr"] for x in optimizer.param_groups]  # for loggers
         scheduler.step()
-
+        
         if RANK in {-1, 0}:
             # mAP
             callbacks.run("on_train_epoch_end", epoch=epoch)
             ema.update_attr(model, include=["yaml", "nc", "hyp", "names", "stride", "class_weights"])
             final_epoch = (epoch + 1 == epochs) or stopper.possible_stop
-            if not noval or final_epoch:  # Calculate mAP
-                results, maps, _ = validate.run(
-                    data_dict,
-                    batch_size=batch_size // WORLD_SIZE * 2,
-                    imgsz=imgsz,
-                    half=amp,
-                    model=ema.ema,
-                    single_cls=single_cls,
-                    dataloader=val_loader,
-                    save_dir=save_dir,
-                    plots=False,
-                    callbacks=callbacks,
-                    compute_loss=compute_loss,
-                )
 
+            if not noval or final_epoch:  # Calculate mAP
+                if ensemblist == False:
+                    results, maps, _ = validate.run( # <------ PROBLEMATIC LINE 
+                        data_dict,
+                        batch_size=batch_size // WORLD_SIZE * 2,
+                        imgsz=imgsz,
+                        half=amp,
+                        model=ema.ema,
+                        single_cls=single_cls,
+                        dataloader=val_loader,
+                        save_dir=save_dir,
+                        plots=False,
+                        callbacks=callbacks,
+                        compute_loss=compute_loss,
+                        ensemblist=False
+                    )
+                else:
+                    results, maps, _ = validate.run( 
+                        data_dict,
+                        batch_size=batch_size // WORLD_SIZE * 2,
+                        imgsz=imgsz,
+                        half=amp,
+                        model=ema.ema,
+                        single_cls=single_cls,
+                        dataloader=val_loader,
+                        save_dir=save_dir,
+                        plots=False,
+                        callbacks=callbacks,
+                        compute_loss=compute_loss,
+                        ensemblist=True,
+                        current_PEEKs=current_PEEKs,
+                        past_PEEKs=past_PEEKs
+                    )
+            
             # Update best mAP
             fi = fitness(np.array(results).reshape(1, -1))  # weighted combination of [P, R, mAP@.5, mAP@.5-.95]
             stop = stopper(epoch=epoch, fitness=fi)  # early stop check
@@ -498,6 +515,10 @@ def train(hyp, opt, device, callbacks, peek_dir, ensemblist=False):  # hyp is pa
 
         # end epoch ----------------------------------------------------------------------------------------------------
     # end training -----------------------------------------------------------------------------------------------------
+
+    # Save PEEKS:
+    torch.save(current_PEEKs, peek_dir)
+
     if RANK in {-1, 0}:
         LOGGER.info(f"\n{epoch - start_epoch + 1} epochs completed in {(time.time() - t0) / 3600:.3f} hours.")
         for f in last, best:
@@ -519,6 +540,7 @@ def train(hyp, opt, device, callbacks, peek_dir, ensemblist=False):  # hyp is pa
                         plots=plots,
                         callbacks=callbacks,
                         compute_loss=compute_loss,
+                        ensemblist=False
                     )  # val best model with plots
                     if is_coco:
                         callbacks.run("on_fit_epoch_end", list(mloss) + list(results) + lr, epoch, best_fitness, fi)

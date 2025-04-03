@@ -159,7 +159,8 @@ class check_PEEKs(Exception):
         self.message = message
         super().__init__(self.message)
 
-    def check_length(self, a, b):
+    @staticmethod
+    def check_length(a, b):
         if len(a) != len(b):
             raise unequal_PEEKs(self.message)
 
@@ -189,7 +190,7 @@ class PEEKLossWrapper(nn.Module):
             PEEKs (PEEK maps from models): Extra model outputs used for computing the custom PEEK loss.
         """
         # Compute the base loss using the provided loss function
-        base_loss, loss_items = self.alpha*self.base_loss_fn(input, target)
+        base_loss, loss_items = self.base_loss_fn(input, target)
 
         try:
             check_PEEKs.check_length(current_PEEKs, past_PEEKs)
